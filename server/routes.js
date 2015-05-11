@@ -17,7 +17,7 @@ module.exports = function (app, eventModel) {
 
     app.get('/event/:id', function (req, res) {
         var eventId = req.params.id;
-        var ev = eventModel.getEvent(eventId);
+        var ev = eventModel.readEvent(eventId);
         if (!ev) {
             res.status(404).send('Event with id ' + id + ' not found!');
         }
