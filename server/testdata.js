@@ -23,7 +23,7 @@ module.exports = function (eventmodel) {
 	var ev2 = eventmodel.createEvent({
 		name: 'Skandinavisk Morgenmøte',
 		location: 'Atriet 22.etasje i Posthuset',
-		time: new Date(2015, 3, 13, 08, 30).getTime(),
+		time: new Date(2015, 4, 13, 08, 30).getTime(),
 		capacity: 150
 	});
 
@@ -31,7 +31,7 @@ module.exports = function (eventmodel) {
 	var ev3 = eventmodel.createEvent({
 		name: 'Romantisk middag for to',
 		location: 'Statholdergaarden',
-		time: new Date(2015, 3, 16, 20, 0).getTime(),
+		time: new Date(2015, 4, 16, 20, 0).getTime(),
 		capacity: 2
 	});
 
