@@ -23,4 +23,7 @@ We're implementing a simple registration application using React.js!
 - Implement functionality for creating new events.
 
 ### Docs
-Aww.. This section is empty :(
+- React.js documentation: https://facebook.github.io/react/docs/getting-started.html
+  - Thinking in React, especially, is a good article to get to grips with how React.js works.
+- Babel.js (http://babeljs.io/). This application uses babel.js to compile ECMAScript 6 and JSX into plain javascript. The only ES6 specific functionality in use is the module system, but feel free to try out other cool things!
+- You can learn more about the ES6 module system at http://www.2ality.com/2014/09/es6-modules-final.html
