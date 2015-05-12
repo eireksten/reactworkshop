@@ -80,18 +80,18 @@ var API = _.assign({
 			
 	},
 
-	addRegistrant: function (event, registrant) {
+	addParticipant: function (event, participant) {
 		var ev = _.find(eventlist, {id: event.id});
-		var reg = _.cloneDeep(registrant)
+		var reg = _.cloneDeep(participant)
 
-		ev.registrants.push(reg);
+		ev.participants.push(reg);
 
-		DAO.addRegistrant(ev, reg)
+		DAO.addParticipant(ev, reg)
 			.done(function (response) {
 				_.assign(reg, response);
 			})
 			.fail(function () {
-				ev.registrants = _.without(ev.registrants, registrant);
+				ev.participants = _.without(ev.participants, participant);
 			})
 			.always(function () {
 				API.emit('update');
@@ -101,22 +101,18 @@ var API = _.assign({
 		API.emit('update');
 	},
 
-	removeRegistrant: function (event, registrant) {
+	removeParticipant: function (event, participant) {
 
 		var ev = _.find(eventlist, {id: event.id});
-		var reg = _.find(ev.registrants, registrant);
+		var reg = _.find(ev.participants, participant);
 
-		ev.registrants = _.without(ev.registrants, reg);
+		ev.participants = _.without(ev.participants, reg);
 		API.emit('update');
 
-		DAO.removeRegistrant(ev, reg)
+		DAO.removeParticipant(ev, reg)
 			.fail(function () {
-				ev.registrants.push(reg);
-			});
-
-		DAO.addRegistrant(ev, registrant)
-			.fail(function () {
-				ev.registrants = _.without(ev.registrants, registrant);
+				ev.participants.push(reg);
+				API.emit('update');
 			});
 
 		API.emit('update');

@@ -47,22 +47,22 @@ export function deleteEvent(event) {
     });
 };
 
-export function addRegistrant(event, registrant) {
+export function addParticipant(event, participant) {
     return $.ajax({
         type: 'POST',
-        url: '/event/' + event.id + '/addregistrant',
+        url: '/event/' + event.id + '/addparticipant',
         dataType: 'json',
         contentType: 'application/json',
-        data: registrant
+        data: participant
     });
 };
 
-export function removeRegistrant(event, registrant) {
+export function removeParticipant(event, participant) {
     return $.ajax({
         type: 'POST',
-        url: '/event/' + event.id + '/removeregistrant',
+        url: '/event/' + event.id + '/removeparticipant',
         dataType: 'json',
         contentType: 'application/json',
-        data: registrant
+        data: participant
     });
 };
