@@ -44,23 +44,23 @@ var methods = {
 		return ev;
 	},
 	
-	addRegistrant: function (eventId, registrant) {
-		var reg = _.omit(registrant, 'time');
-		_.defaults(reg, {
+	addParticipant: function (eventId, participant) {
+		var par = _.omit(participant, 'time');
+		_.defaults(par, {
 			name: 'Unknown',
 			time: Date.now()
 		});
 		_.find(this._events, {id: eventId})
-			.registrants
-			.push(reg);
+			.participants
+			.push(par);
 
-		return reg;
+		return par;
 	},
 	
-	removeRegistrant: function (eventId, registrant) {
+	removeRegistrant: function (eventId, participant) {
 		var ev = _.find(this._events, {id: eventId});
-		var reg = _.find(ev.registrants, registrant);
-		ev.registrants = _.without(ev.registrants, reg);
+		var par = _.find(ev.participants, participant);
+		ev.participants = _.without(ev.participants, par);
 	}
 
 }

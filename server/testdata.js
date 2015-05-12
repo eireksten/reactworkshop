@@ -11,11 +11,11 @@ module.exports = function (eventmodel) {
 		capacity: 24
 	});
 
-	eventmodel.addRegistrant(ev1.id, {
+	eventmodel.addParticipant(ev1.id, {
 		name: 'Eirik Reksten'
 	});
 
-	eventmodel.addRegistrant(ev1.id, {
+	eventmodel.addParticipant(ev1.id, {
 		name: 'Silje Garshol Løvaas'
 	});
 
@@ -35,18 +35,18 @@ module.exports = function (eventmodel) {
 		capacity: 2
 	});
 
-	eventmodel.addRegistrant(ev3.id, {
+	eventmodel.addParticipant(ev3.id, {
 		name: 'Bjarne Berntsen'
 	});
 
 	_.delay( function () {
-		eventmodel.addRegistrant(ev3.id, {
+		eventmodel.addParticipant(ev3.id, {
 			name: 'Lotte Larsen'
 		})
 	}, 50)
 	
     _.delay(function () {
-    	eventmodel.addRegistrant(ev3.id, {
+    	eventmodel.addParticipant(ev3.id, {
     		name: 'Ivar Innpåsliten'
     	});
     }, 100);
