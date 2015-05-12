@@ -35,21 +35,21 @@ section#registration {
 	padding: 48px 0;
 }
 
-div.event:first-of-type {
+div.eventitem:first-of-type {
     border-top: 1px solid lightgrey;
 }
 
-div.event {
+div.eventitem {
     padding: 16px;
     border-bottom: 1px solid lightgrey;
     cursor: pointer;
 }
 
-div.event:hover {
+div.eventitem:hover {
     background-color: #f8f8f8;
 }
 
-div.event > span:first-child {
+div.eventitem > span:first-child {
     font-size: 1.4em;
     display: block;
 }

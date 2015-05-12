@@ -3,6 +3,7 @@
 import React from 'react';
 
 import EventList from 'script/views/EventList';
+import EventView from 'script/views/EventView';
 
 import EventStore from 'script/store/eventstore';
 
@@ -13,7 +14,8 @@ var RegistrationApp = React.createClass({
 	getInitialState: function () {
 		return {
 			section: Section.EVENTLIST,
-			events: []
+			events: [],
+			currentEvent: undefined
 		};
 	},
 
@@ -35,15 +37,31 @@ var RegistrationApp = React.createClass({
 		});
 	},
 
-	handleNavigation: function (section) {
+	handleEventSelected: function (event) {
 		this.setState({
-			section: section
+			section: Section.EVENTVIEW,
+			currentEvent: event
+		});
+	},
+	showEventList: function () {
+		this.setState({
+			currentEvent: null,
+			section: Section.EVENTLIST
 		});
 	},
 	render: function () {
+
+		var contents = null;
+
+		if (this.state.section === Section.EVENTVIEW) {
+			contents = <EventView event={this.state.currentEvent} onClose={this.showEventList} />;
+		} else {
+			contents = <EventList eventList={this.state.events} onSelectEvent={this.handleEventSelected} />
+		}
+
 		return (
 			<section className="registrationapp">
-				<EventList eventList={this.state.events} />
+				{contents}
 			</section>
 		);
 	}

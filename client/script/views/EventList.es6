@@ -44,7 +44,7 @@ var EventItem = React.createClass({
 	},
 	render: function () {
 		return (
-			<div className="event">
+			<div className="eventitem" onClick={this.props.onClick}>
 				<span className="eventname">{this.props.event.name}</span>
 				<div className="eventitemdetails">
 					<span className="eventtime">
