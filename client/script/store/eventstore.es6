@@ -68,6 +68,9 @@ var API = _.assign({
 	deleteEvent: function (event) {
 
 		var ev = _.find(eventlist, {id: event.id});
+		eventlist = _.without(eventlist, ev);
+
+		API.emit('update');
 
 		DAO.deleteEvent(ev)
 			.fail(function (){
@@ -78,11 +81,45 @@ var API = _.assign({
 	},
 
 	addRegistrant: function (event, registrant) {
+		var ev = _.find(eventlist, {id: event.id});
+		var reg = _.cloneDeep(registrant)
 
+		ev.registrants.push(reg);
+
+		DAO.addRegistrant(ev, reg)
+			.done(function (response) {
+				_.assign(reg, response);
+			})
+			.fail(function () {
+				ev.registrants = _.without(ev.registrants, registrant);
+			})
+			.always(function () {
+				API.emit('update');
+			})
+
+
+		API.emit('update');
 	},
 
 	removeRegistrant: function (event, registrant) {
 
+		var ev = _.find(eventlist, {id: event.id});
+		var reg = _.find(ev.registrants, registrant);
+
+		ev.registrants = _.without(ev.registrants, reg);
+		API.emit('update');
+
+		DAO.removeRegistrant(ev, reg)
+			.fail(function () {
+				ev.registrants.push(reg);
+			});
+
+		DAO.addRegistrant(ev, registrant)
+			.fail(function () {
+				ev.registrants = _.without(ev.registrants, registrant);
+			});
+
+		API.emit('update');
 	}
 
 }, events.EventEmitter.prototype);
