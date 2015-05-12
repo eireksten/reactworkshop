@@ -9,14 +9,14 @@ var methods = {
 	},
 
 	createEvent: function (data) {
-		var ev = _.omit(data, ['id', 'registrants']);
+		var ev = _.omit(data, ['id', 'participants']);
 		_.defaults(ev, {
 			id: _.uniqueId('event_'),
 			name: 'New Event',
 			time: Date.now(),
 			location: 'TBD',
 			capacity: 10,
-			registrants: []
+			participants: []
 		});
 		this._events.push(ev);
 		return ev;
@@ -30,7 +30,7 @@ var methods = {
 		var ev = _.find(this._events, {id: id});
 		_.assign(
 			ev,
-			_.omit(newdata, ['id', 'registrants'])
+			_.omit(newdata, ['id', 'participants'])
 		);
 		return ev;
 	},
@@ -57,7 +57,7 @@ var methods = {
 		return par;
 	},
 	
-	removeRegistrant: function (eventId, participant) {
+	removeParticipant: function (eventId, participant) {
 		var ev = _.find(this._events, {id: eventId});
 		var par = _.find(ev.participants, participant);
 		ev.participants = _.without(ev.participants, par);
