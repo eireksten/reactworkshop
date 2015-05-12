@@ -53,6 +53,8 @@ var methods = {
 		_.find(this._events, {id: eventId})
 			.registrants
 			.push(reg);
+
+		return reg;
 	},
 	
 	removeRegistrant: function (eventId, registrant) {

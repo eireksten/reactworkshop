@@ -49,13 +49,17 @@ module.exports = function (app, eventModel) {
     });
 
     app.post('/event/:id/addregistrant', function (req, res) {
+        
         var eventId = req.params.id;
         var ev = eventModel.readEvent(eventId);
         if (!ev) {
             res.status(404).send('Event with id ' + id + ' not found!');
         }
         var registrant = req.body;
-        eventModel.addRegistrant(eventId, registrant);
+        registrant = eventModel.addRegistrant(eventId, registrant);
+
+        res.json(registrant);
+
     });
 
     app.post('/event/:id/removeregistrant', function (req, res) {
